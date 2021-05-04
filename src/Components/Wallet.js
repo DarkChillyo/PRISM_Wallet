@@ -55,26 +55,32 @@ const Wallet = (props) => {
   
 
 
-const CustomImage =(name, url) => {
-    let imagename = name 
-    let imageurl = url
-    if (imagename == "Matic Token") {
-     return <img src='https://logos.covalenthq.com/tokens/0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0.png' height='50' /> 
-    }
-    else if (imageurl == "") {
-        return <img 
-        style={{
-          borderRadius: "50%",
-          width: 50,
-          height: 50,
-          background: "red",
-          display: "block"
-        }}
-        src='https://rlv.zcache.ca/question_mark_classic_round_sticker-rc057742187e944779b84e5056ae3d426_0ugmp_8byvr_540.jpg' />
-       }
-    else {
-      return <img src= {url} height='50' />
-    }
+    function CustomImage(name, url) {
+        let imagename = name 
+        let imageurl = url
+        if (imagename == "Matic Token") {
+         return <img src='https://logos.covalenthq.com/tokens/0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0.png' height='50' /> 
+        }
+        else if (imageurl == "") {
+            return <img 
+            style={{
+                borderRadius: "50%",
+                width: 50,
+                height: 50,
+                background: "red",
+                display: "block"
+              }}
+            src='https://rlv.zcache.ca/question_mark_classic_round_sticker-rc057742187e944779b84e5056ae3d426_0ugmp_8byvr_540.jpg' />
+           }
+        else if (imagename == "PRISM Token") {
+            return <img src='https://www.prismnetwork.io/images/logo-prism-network.png' height='50' />
+        }
+        else if (imagename == "Uniswap V2") {
+            return <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLqtYzDdBeCyYDkXAn03x0XqxUuVd847cjaeXezJHejedEUua8XtoM6XXGZVJYqQlVF60&usqp=CAU' height='50' />
+        }
+        else {
+          return <img src= {url} height='50' />
+        }
   }
 
 
@@ -97,9 +103,9 @@ const CustomImage =(name, url) => {
     
       {apiData.map((row) => (
           <div>
-          <ListItem>
+          <ListItem >
           <ListItemIcon>
-          <img src={row.logo_url} height='50' />
+          {CustomImage(row.contract_name, row.logo_url)}
           </ListItemIcon> 
           <ListItemText secondaryTypographyProps={{ style: secondaryColor }} 
           primary={row.contract_ticker_symbol + "   -   " + row.contract_name}  
