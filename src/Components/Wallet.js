@@ -61,6 +61,12 @@ const Wallet = (props) => {
         if (imagename == "Matic Token") {
          return <img src='https://logos.covalenthq.com/tokens/0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0.png' height='50' /> 
         }
+        else if (imagename == "Uniswap V2") {
+            return <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLqtYzDdBeCyYDkXAn03x0XqxUuVd847cjaeXezJHejedEUua8XtoM6XXGZVJYqQlVF60&usqp=CAU' height='50' />
+        }
+        else if (imagename == "PRISM Token") {
+            return <img src='https://www.prismnetwork.io/images/logo-prism-network.png' height='50' />
+        }
         else if (imageurl == "") {
             return <img 
             style={{
@@ -72,12 +78,7 @@ const Wallet = (props) => {
               }}
             src='https://rlv.zcache.ca/question_mark_classic_round_sticker-rc057742187e944779b84e5056ae3d426_0ugmp_8byvr_540.jpg' />
            }
-        else if (imagename == "PRISM Token") {
-            return <img src='https://www.prismnetwork.io/images/logo-prism-network.png' height='50' />
-        }
-        else if (imagename == "Uniswap V2") {
-            return <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLqtYzDdBeCyYDkXAn03x0XqxUuVd847cjaeXezJHejedEUua8XtoM6XXGZVJYqQlVF60&usqp=CAU' height='50' />
-        }
+        
         else {
           return <img src= {url} height='50' />
         }
@@ -88,17 +89,16 @@ const Wallet = (props) => {
     color: '#eca3f5'
  }
   return (
-<div> 
-<h3 align="left"
-        >
+<div > 
+<h3 justify="flex-start">
               
      {props.chainName}
      
      </h3>
 
-     <div className="list">
+     <div >
       <ThemeProvider theme={theme}>
-      <List component="nav" aria-label="main mailbox folders">
+      <List component="nav" justify="flex-center">
     
     
       {apiData.map((row) => (
@@ -107,7 +107,7 @@ const Wallet = (props) => {
           <ListItemIcon>
           {CustomImage(row.contract_name, row.logo_url)}
           </ListItemIcon> 
-          <ListItemText secondaryTypographyProps={{ style: secondaryColor }} 
+          <ListItemText secondaryTypographyProps={{ style: secondaryColor, align: "flex-center" }} 
           primary={row.contract_ticker_symbol + "   -   " + row.contract_name}  
           secondary={(parseInt(row.balance) / Math.pow(10, row.contract_decimals)).toFixed(4)}
          />

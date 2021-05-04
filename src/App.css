@@ -5,10 +5,12 @@ body {
   color: #B10DC9;
   padding: 40px;
   font-family: Arial;
-  text-align: center;
+  
 }
 
-nav {
+.nav {
   color: #B10DC9;
+  align-items: center;
+  
 }
 
