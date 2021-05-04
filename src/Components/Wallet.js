@@ -85,7 +85,7 @@ const Wallet = (props) => {
 
 
   const secondaryColor = {
-    color: '#ff79cd'
+    color: '#eca3f5'
  }
   return (
 <div> 
