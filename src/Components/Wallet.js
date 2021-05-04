@@ -70,19 +70,22 @@ const CustomImage =(name, url) => {
   
   return (
 <div> 
+<h3 align="flex-center"
+        >
+              
+     {props.chainName}
+     
+     </h3>
     <TableContainer component={Paper}
     style={{
         backgroundColor: "black",
         color: "#B10DC9"}}>
-        <h3
-        style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            
-          }}>{props.chainName}</h3>
-      <Table className={classes.table} size="medium" aria-label="a dense table" >
+        
+    
+      <Table align="center" className={classes.table} size="medium" aria-label="a dense table" >
+       
         <TableHead>
+        
           <TableRow >
            <TableCell
            style={{

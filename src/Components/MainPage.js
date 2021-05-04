@@ -68,10 +68,10 @@ useEffect(async () => {
 
 
     <Grid container spacing={3}>
-        <Grid item xs={6} >
+        <Grid item xs={6} sm={6} zeroMinWidth="true"  >
             <Wallet wallet = {walletAddress} chain='1' chainName='Ethereum' />
         </Grid>
-        <Grid item xs={6}>  
+        <Grid item xs={6} sm ={6} zeroMinWidth>  
             <Wallet wallet = {walletAddress} chain='137' chainName='Matic' />
         </Grid>
     </Grid>
