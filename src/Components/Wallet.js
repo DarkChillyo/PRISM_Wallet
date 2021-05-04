@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 //BootStrap
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,6 +9,15 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import { createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
+
+
 
 //Components
 import { connectWallet } from "../util/interact";
@@ -25,14 +34,16 @@ const Wallet = (props) => {
 
 
     //Styles
-    const useStyles = makeStyles({
-        table: {
-          minWidth: 300,
-          maxWidth: 600,
+    const theme = createMuiTheme({
+        palette: {
+          primary: {
+            main: purple[500],
+          },
+          secondary: {
+            main: '#B10DC9',
+          },
         },
-      }); 
-  
-    const classes = useStyles();  
+      });
 
  //Get API info
  useEffect(async () => {
@@ -67,85 +78,48 @@ const CustomImage =(name, url) => {
   }
 
 
-  
+  const secondaryColor = {
+    color: '#51c4d3'
+ }
   return (
 <div> 
-<h3 align="flex-center"
+<h3 align="left"
         >
               
      {props.chainName}
      
      </h3>
-    <TableContainer component={Paper}
-    style={{
-        backgroundColor: "black",
-        color: "#B10DC9"}}>
-        
+
+     <div className="list">
+      <ThemeProvider theme={theme}>
+      <List component="nav" aria-label="main mailbox folders">
     
-      <Table align="center" className={classes.table} size="medium" aria-label="a dense table" >
+    
+      {apiData.map((row) => (
+          <div>
+          <ListItem>
+          <ListItemIcon>
+          <img src={row.logo_url} height='50' />
+          </ListItemIcon> 
+          <ListItemText secondaryTypographyProps={{ style: secondaryColor }} 
+          primary={row.contract_ticker_symbol + "   -   " + row.contract_name}  
+          secondary={(parseInt(row.balance) / Math.pow(10, row.contract_decimals)).toFixed(4)}
+         />
        
-        <TableHead>
-        
-          <TableRow >
-           <TableCell
-           style={{
-            backgroundColor: "black",
-            color: "#B10DC9"}}
-            >Logo</TableCell>
-            <TableCell
-            style={{
-                backgroundColor: "black",
-                color: "#B10DC9"}}
-                >Name</TableCell>
-            <TableCell
-            style={{
-                backgroundColor: "black",
-                color: "#B10DC9"}}
-                 align="right">Symbol</TableCell>
-            <TableCell 
-            style={{
-                backgroundColor: "black",
-                color: "#B10DC9"}}
-                align="right">Balance</TableCell>
-              
-            
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {apiData.map((row) => (
-            <TableRow key={row.contract_name} >
-            <TableCell align="right"
-            style={{
-                backgroundColor: "black",
-                color: "red"}}
-                 component="th" scope="row">
-            {CustomImage(row.contract_name, row.logo_url)}   
-                </TableCell>  
-              <TableCell
-              style={{
-                backgroundColor: "black",
-                color: "#B10DC9"}}
-                 component="th" scope="row">
-                {row.contract_name}
-              </TableCell>
-              <TableCell 
-              style={{
-                backgroundColor: "black",
-                color: "#B10DC9"}}
-                align="right">{row.contract_ticker_symbol}</TableCell>
-              
-              <TableCell
-              style={{
-                backgroundColor: "black",
-                color: "#B10DC9"}}
-                 align="right"><div>{(parseInt(row.balance) / Math.pow(10, row.contract_decimals)).toFixed(4)}</div> </TableCell>
-             
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+         
+          </ListItem>
+          
+          </div>
+      ))}
+     
+      </List>
+      
+    </ThemeProvider>
     </div>
+    </div>
+
+
+   
   )
         }
 
