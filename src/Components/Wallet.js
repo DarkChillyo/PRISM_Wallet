@@ -2,13 +2,7 @@ import { useEffect, useState } from "react";
 
 //BootStrap
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,7 +14,7 @@ import purple from '@material-ui/core/colors/purple';
 
 
 //Components
-import { connectWallet } from "../util/interact";
+//import { connectWallet } from "../util/interact";
 import { getAPI } from '../util/getAPI'
 
 
